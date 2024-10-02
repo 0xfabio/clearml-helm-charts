@@ -53,6 +53,9 @@ clearml_serving_statistics:
   additionalConfigs: {}
   #   additionalFile.conf: |
   #     <filecontent>
+  serviceMonitor:
+    # -- Enable if you are already using Prometheus Operator
+    enabled: false
 
 # -- ClearML serving inference configurations
 clearml_serving_inference:

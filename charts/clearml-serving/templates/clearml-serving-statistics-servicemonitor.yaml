@@ -1,0 +1,17 @@
+{{- if and .Values.clearml_serving_statistics.serviceMonitor.enabled (not .Values.prometheus.enabled) }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "clearmlServing.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels: {{- include "clearmlServing.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels: {{- include "clearmlServing.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: 9999
+      interval: 30s
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+{{- end }}
