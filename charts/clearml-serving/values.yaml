@@ -159,6 +159,17 @@ clearml_serving_triton:
     # -- Ingress root path url
     path: "/"
 
+# -- ClearML pods ServiceAccount
+serviceAccount:
+  # -- Enable/Disable ServiceAccount creation
+  create: false
+  # -- ServiceAccount name
+  name: "clearml-serving"
+  # -- Annotations for ServiceAccount
+  annotations: {}
+  # -- Automount API credentials for a service account.
+  automountServiceAccountToken: false
+
 # -- Configuration from https://github.com/bitnami/charts/blob/main/bitnami/kafka/values.yaml
 kafka:
   enabled: true

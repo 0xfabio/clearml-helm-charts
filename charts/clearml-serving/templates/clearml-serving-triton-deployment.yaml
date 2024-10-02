@@ -86,6 +86,9 @@ spec:
             - name: additional-config
               mountPath: /opt/clearml/config
           {{- end }}
+          {{- if .Values.serviceAccount.create }}
+          serviceAccountName: {{ include "clearmlServing.serviceAccountName" . }}
+          {{- end }}
           resources:
             {{- toYaml .Values.clearml_serving_triton.resources | nindent 12 }}
       restartPolicy: Always
